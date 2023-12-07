@@ -1,2 +1,15 @@
 template: "Hello, %s!"
 defaultName: "Joe"
+producer:
+  type: basic
+  bootstrapServers:
+    - 127.0.0.1:9092
+  name: producerNameToBeUsedInMetrics
+  keySerializer:
+    type: string
+  valueSerializer:
+    type: string
+  acks: all
+  retries: 2147483647 # int max value
+  maxInFlightRequestsPerConnection: 1
+  maxPollBlockTime: 10s
