@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'com.vguidi'
@@ -7,12 +8,13 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
 }
 
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.vguidi.Main'
+                'Main-Class': 'com.vguidi.dropwizardsearch.DropwizardSearchApplication'
         )
     }
 }
@@ -20,6 +22,7 @@ jar {
 dependencies {
     implementation 'io.dropwizard:dropwizard-core:1.0.9'
     implementation platform('io.dropwizard:dropwizard-bom:4.0.1')
+    implementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.mockito:mockito-core:3.12.4'

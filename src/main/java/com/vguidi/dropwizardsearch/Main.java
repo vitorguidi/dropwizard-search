@@ -1,4 +1,4 @@
-package com.vguidi;
+package com.vguidi.dropwizardsearch;
 
 public class Main {
     public static void main(String[] args) {
