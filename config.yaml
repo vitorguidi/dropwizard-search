@@ -24,3 +24,5 @@ producer:
   maxInFlightRequestsPerConnection: 1
   maxPollBlockTime: 10s
 topic: "example-topic"
+# ElasticSearch client configuration
+elasticsearch: "localhost:9200"

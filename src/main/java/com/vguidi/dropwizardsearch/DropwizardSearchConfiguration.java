@@ -56,6 +56,15 @@ public class DropwizardSearchConfiguration extends Configuration {
     @JsonProperty("consumer")
     private KafkaConsumerFactory<String, String> kafkaConsumerFactory;
 
+    @Valid
+    @NotNull
+    @JsonProperty("elasticsearch")
+    private String elasticSearchEndpoint;
+
+    public String getElasticSearchEndpoint() { return elasticSearchEndpoint; }
+
+    private void setElasticSearchEndpoint(String value) { this.elasticSearchEndpoint = value; }
+
     @JsonProperty
     public KafkaConsumerFactory<String, String> getKafkaConsumerFactory() {
         return kafkaConsumerFactory;
@@ -75,4 +84,5 @@ public class DropwizardSearchConfiguration extends Configuration {
     public void setKafkaTopic(String topic) {
         this.kafkaTopic = topic;
     }
+
 }
