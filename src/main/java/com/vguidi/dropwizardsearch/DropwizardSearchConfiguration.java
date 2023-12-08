@@ -3,6 +3,7 @@ package com.vguidi.dropwizardsearch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.core.Configuration;
+import io.dropwizard.kafka.KafkaConsumerFactory;
 import io.dropwizard.kafka.KafkaProducerFactory;
 
 import javax.validation.Valid;
@@ -32,6 +33,11 @@ public class DropwizardSearchConfiguration extends Configuration {
 
     @Valid
     @NotNull
+    @JsonProperty("topic")
+    private String kafkaTopic;
+
+    @Valid
+    @NotNull
     @JsonProperty("producer")
     private KafkaProducerFactory<String, String> kafkaProducerFactory;
 
@@ -40,4 +46,33 @@ public class DropwizardSearchConfiguration extends Configuration {
         return kafkaProducerFactory;
     }
 
+    @JsonProperty
+    public void setKafkaProducerFactory(KafkaProducerFactory<String, String> factory) {
+        this.kafkaProducerFactory = factory;
+    }
+
+    @Valid
+    @NotNull
+    @JsonProperty("consumer")
+    private KafkaConsumerFactory<String, String> kafkaConsumerFactory;
+
+    @JsonProperty
+    public KafkaConsumerFactory<String, String> getKafkaConsumerFactory() {
+        return kafkaConsumerFactory;
+    }
+
+    @JsonProperty
+    public void setKafkaConsumerFactory(KafkaConsumerFactory<String, String> factory) {
+        this.kafkaConsumerFactory = factory;
+    }
+
+    @JsonProperty
+    public String getKafkaTopic() {
+        return kafkaTopic;
+    }
+
+    @JsonProperty
+    public void setKafkaTopic(String topic) {
+        this.kafkaTopic = topic;
+    }
 }

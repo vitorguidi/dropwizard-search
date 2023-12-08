@@ -1,5 +1,15 @@
 template: "Hello, %s!"
 defaultName: "Joe"
+consumer:
+  type: basic
+  bootstrapServers:
+    - 127.0.0.1:9092
+  consumerGroupId: hello
+  name: consumerNameToBeUsedInMetrics
+  keyDeserializer:
+    type: string
+  valueDeserializer:
+    type: string
 producer:
   type: basic
   bootstrapServers:
@@ -13,3 +23,4 @@ producer:
   retries: 2147483647 # int max value
   maxInFlightRequestsPerConnection: 1
   maxPollBlockTime: 10s
+topic: "example-topic"
