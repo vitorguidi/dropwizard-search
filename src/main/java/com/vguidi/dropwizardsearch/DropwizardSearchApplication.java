@@ -6,6 +6,8 @@ import com.vguidi.dropwizardsearch.controller.HelloController;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
+import io.dropwizard.elasticsearch.health.EsClusterHealthCheck;
+import io.dropwizard.elasticsearch.managed.ManagedEsClient;
 import io.dropwizard.kafka.KafkaConsumerBundle;
 import io.dropwizard.kafka.KafkaConsumerFactory;
 import io.dropwizard.kafka.KafkaProducerBundle;
@@ -60,6 +62,9 @@ public class DropwizardSearchApplication extends Application<DropwizardSearchCon
         Consumer<String, String> consumer = kafkaConsumer.getConsumer();
         consumer.subscribe(List.of("example-topic"));
         HelloService helloService = new HelloService(consumerExecutorService, consumer, producer);
+        final ManagedEsClient managedClient = new ManagedEsClient(configuration.getEsConfiguration());
+        environment.lifecycle().manage(managedClient);
+        environment.healthChecks().register("ES cluster health", new EsClusterHealthCheck(managedClient.getClient()));
     }
 
 }
