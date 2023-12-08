@@ -1,4 +1,4 @@
-package com.vguidi.dropwizardsearch.api;
+package com.vguidi.dropwizardsearch.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

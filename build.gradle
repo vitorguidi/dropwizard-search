@@ -23,6 +23,7 @@ dependencies {
     implementation 'io.dropwizard:dropwizard-core:1.0.9'
     implementation platform('io.dropwizard:dropwizard-bom:4.0.1')
     implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation "io.dropwizard.modules:dropwizard-kafka:4.0.0"
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.mockito:mockito-core:3.12.4'
