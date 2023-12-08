@@ -3,7 +3,6 @@ package com.vguidi.dropwizardsearch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.core.Configuration;
-import io.dropwizard.elasticsearch.config.EsConfiguration;
 import io.dropwizard.kafka.KafkaConsumerFactory;
 import io.dropwizard.kafka.KafkaProducerFactory;
 
@@ -52,13 +51,19 @@ public class DropwizardSearchConfiguration extends Configuration {
         this.kafkaProducerFactory = factory;
     }
 
-    @JsonProperty("elasticsearch")
-    private EsConfiguration elasticsearch = new EsConfiguration();
-
     @Valid
     @NotNull
     @JsonProperty("consumer")
     private KafkaConsumerFactory<String, String> kafkaConsumerFactory;
+
+    @Valid
+    @NotNull
+    @JsonProperty("elasticsearch")
+    private String elasticSearchEndpoint;
+
+    public String getElasticSearchEndpoint() { return elasticSearchEndpoint; }
+
+    private void setElasticSearchEndpoint(String value) { this.elasticSearchEndpoint = value; }
 
     @JsonProperty
     public KafkaConsumerFactory<String, String> getKafkaConsumerFactory() {
@@ -80,6 +85,4 @@ public class DropwizardSearchConfiguration extends Configuration {
         this.kafkaTopic = topic;
     }
 
-    @JsonProperty
-    public EsConfiguration getEsConfiguration() { return this.elasticsearch; }
 }
